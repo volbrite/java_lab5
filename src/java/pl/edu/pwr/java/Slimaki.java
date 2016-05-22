@@ -29,8 +29,8 @@ class Slimaki extends JFrame implements ActionListener
     Container panel = getContentPane();
 
     //zmienne pomocnicze
-    static int wielkoscX = 20;
-    static int wielkoscY = 10;
+    static int wielkoscX = 25;
+    static int wielkoscY = 13;
     static int liscieKolor[][];
     static boolean czyJestSlimak[][];
     static Slimak iloscSlimakow[];
