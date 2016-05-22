@@ -34,18 +34,3 @@ class SlimakSzybkoscChange implements ChangeListener
         }
     }
 }
-
-class SlimakSzybkoscFieldChange implements ActionListener {
-    Slimak[] slimaki;
-    //konstruktor domyslny
-
-    SlimakSzybkoscFieldChange(Slimak[] slim)
-    {
-        slimaki = slim;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-}

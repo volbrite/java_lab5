@@ -63,7 +63,7 @@ class Slimak extends Thread
                     }
 
                     //zmiana polozenia slimaka
-                    for(int p = 0; p < 10; p++)
+                    for(int p = 0; p < Slimaki.ileZrobicSlimakow; p++)
                     {
                         int x;
                         int y;
@@ -89,7 +89,7 @@ class Slimak extends Thread
                         }
 
                         //jesli w wyniku ruchu znajdziemy sie poza obszarem lub na polu zajmowanym przez innego slimaka
-                        if(x < 0 || x >= 10 || y < 0 || y >= 10 || Slimaki.czyJestSlimak[x][y] != false)
+                        if(x < 0 || x >= Slimaki.wielkoscX || y < 0 || y >= Slimaki.wielkoscY || Slimaki.czyJestSlimak[x][y] != false)
                         {
                             continue;
                         }
