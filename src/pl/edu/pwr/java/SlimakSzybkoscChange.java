@@ -7,6 +7,8 @@ package pl.edu.pwr.java;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Klasa SlimakSzybkoscSlider impementuje klase ChangeListener i umozliwia
@@ -15,16 +17,35 @@ import javax.swing.event.ChangeListener;
 class SlimakSzybkoscChange implements ChangeListener
 {
     //utworzenie slimaka
-    Slimak slimak;
+    Slimak[] slimaki;
     //konstruktor domyslny
-    SlimakSzybkoscChange(Slimak slim)
+
+
+    SlimakSzybkoscChange(Slimak[] slim)
     {
-        slimak = slim;
+        slimaki = slim;
     }
 
     //metoda umozliwiajaca zmiane wartosci szybkosci pod wplywem przesuniecia suwaka
     public void stateChanged(ChangeEvent e)
     {
-        slimak.szybkosc = ((JSlider)e.getSource()).getValue();
+        for (Slimak s: slimaki) {
+            s.szybkosc = ((JSlider)e.getSource()).getValue();
+        }
+    }
+}
+
+class SlimakSzybkoscFieldChange implements ActionListener {
+    Slimak[] slimaki;
+    //konstruktor domyslny
+
+    SlimakSzybkoscFieldChange(Slimak[] slim)
+    {
+        slimaki = slim;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }

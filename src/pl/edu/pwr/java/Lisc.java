@@ -39,9 +39,9 @@ class Lisc extends Thread
             //symulacja odrastania trawy dla kazdego pola
             synchronized(Slimaki.liscieKolor)
             {
-                for(int i = 0; i < 10; i++)
+                for(int i = 0; i < Slimaki.wielkoscX; i++)
                 {
-                    for(int j = 0; j < 10; j++)
+                    for(int j = 0; j < Slimaki.wielkoscY; j++)
                     {
                         if(Slimaki.liscieKolor[i][j] < 255)
                         {

@@ -15,16 +15,20 @@ import javax.swing.event.ChangeListener;
 class SlimakZarlocznoscChange implements ChangeListener
 {
     //utworzenie slimaka
-    Slimak slimak;
+    Slimak[] slimaki;
     //konstruktor domyslny
-    SlimakZarlocznoscChange(Slimak slim)
+    SlimakZarlocznoscChange(Slimak[] slim)
     {
-        slimak = slim;
+        slimaki = slim;
     }
+
 
     //metoda umozliwiajaca zmiane wartosci zarlocznosci pod wplywem przesuniecia suwaka
     public void stateChanged(ChangeEvent e)
     {
-        slimak.zarlocznosc = ((JSlider)e.getSource()).getValue();
+        for (Slimak s : slimaki) {
+            s.zarlocznosc = ((JSlider)e.getSource()).getValue();
+        }
     }
 }
+

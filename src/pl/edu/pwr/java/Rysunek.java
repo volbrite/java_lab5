@@ -22,9 +22,9 @@ class Rysunek extends JPanel
         synchronized(Slimaki.liscieKolor)
         {
             //rysowanie 'lisci' salaty
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < Slimaki.wielkoscX; i++)
             {
-                for(int j = 0; j < 10; j++)
+                for(int j = 0; j < Slimaki.wielkoscY; j++)
                 {
                     g.setColor(new Color(0, Slimaki.liscieKolor[i][j], 0));
                     g.fillRect(i*30, j*30, 30, 30);
@@ -32,7 +32,7 @@ class Rysunek extends JPanel
             }
             //rysowanie slimakow
             g.setColor(new Color(240,0,0));
-            for(int j = 0; j < 4; j++)
+            for(int j = 0; j < Slimaki.ileZrobicSlimakow; j++)
             {
                 g.fillOval(3 + 30 * Slimaki.iloscSlimakow[j].pozW, 3 + 30 * Slimaki.iloscSlimakow[j].pozH, 23, 23);
             }
