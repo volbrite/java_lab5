@@ -16,9 +16,9 @@ import java.net.URL;
 
 /**
  * Klasa rysunek rozszerza klase JPanel oraz implementuje metody rysujace
- * 'iloscSlimakow' oraz plansze 10x10
+ * 'iloscSlimakow' oraz plansze wymiarX na wymiarY
  */
-class Rysunek extends JPanel
+class RysowaniePlanszy extends JPanel
 {
     private static BufferedImage imageToBufferedImage(Image image) {
 
@@ -107,7 +107,7 @@ class Rysunek extends JPanel
             {
                 for(int j = 0; j < Slimaki.wielkoscY; j++)
                 {
-                    g.setColor(new Color(0, Slimaki.liscieKolor[i][j], 0));
+                    g.setColor(new Color(Slimaki.liscieKolor[i][j], Slimaki.liscieKolor[i][j], Slimaki.liscieKolor[i][j]));
                     g.fillRect(i*30, j*30, 30, 30);
                 }
             }

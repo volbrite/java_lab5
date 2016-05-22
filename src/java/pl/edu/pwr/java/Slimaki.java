@@ -19,7 +19,7 @@ class Slimaki extends JFrame implements ActionListener
 {
     //utworzenie zmiennych opisow pol, przycisku oraz suwakow
     JLabel przebiegSymulacjiLabel = new JLabel ("Przebieg symulacji:");
-    private JButton start  = new JButton ("start");
+    private JButton start  = new JButton ("Start");
     JLabel odrastanieTrawyLabel = new JLabel ("Odrastanie lisci:");
     JLabel szybkoscSlimakowLabel = new JLabel ("Szybkosc slimakow:");
     JLabel zarlocznoscSlimakowLabel = new JLabel ("Zarlocznosc slimakow:");
@@ -29,13 +29,13 @@ class Slimaki extends JFrame implements ActionListener
     Container panel = getContentPane();
 
     //zmienne pomocnicze
-    static int wielkoscX = 25;
-    static int wielkoscY = 13;
+    static int wielkoscX = 20;
+    static int wielkoscY = 10;
     static int liscieKolor[][];
     static boolean czyJestSlimak[][];
     static Slimak iloscSlimakow[];
     static Lisc lisc;
-    static Rysunek salata;
+    static RysowaniePlanszy salata;
     static int ileZrobicSlimakow;
     static int initSzybkosc = 50;
     static int initZarlocznosc = 50;
@@ -49,21 +49,17 @@ class Slimaki extends JFrame implements ActionListener
         //opis okienka dialogowego
         super("Slimaki");
 
+
+
         try {
-            // Set System L&F
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-        }
-        catch (UnsupportedLookAndFeelException e) {
-            // handle exception
-        }
-        catch (ClassNotFoundException e) {
-            // handle exception
-        }
-        catch (InstantiationException e) {
-            // handle exception
-        }
-        catch (IllegalAccessException e) {
-            // handle exception
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            // If Nimbus is not available, you can set the GUI to another look and feel.
         }
 
         ileZrobicSlimakow = 1;
@@ -95,16 +91,16 @@ class Slimaki extends JFrame implements ActionListener
 
     public void ileSlimakowSliderMet() {
         JLabel iloscSlimakowLabel = new JLabel("Ilość ślimaków:");
-        iloscSlimakowLabel.setBounds(100,10,140,20);
+        iloscSlimakowLabel.setBounds(100,7,140,20);
 
         iloscSlimakowSlider = new JSlider(0,0,10,ileZrobicSlimakow);
-        iloscSlimakowSlider.setBounds(250,10,200,20);
+        iloscSlimakowSlider.setBounds(250,7,200,20);
 //        iloscSlimakowSlider.addChangeListener(e -> {
 //            ileZrobicSlimakow = iloscSlimakowSlider.getValue();
 //        });
 
         JTextField iloscSlimakowField = new JTextField();
-        iloscSlimakowField.setBounds(450,10,20,20);
+        iloscSlimakowField.setBounds(460,5,30,30);
 
         iloscSlimakowField.setText(Integer.toString(ileZrobicSlimakow));
 
@@ -113,7 +109,7 @@ class Slimaki extends JFrame implements ActionListener
         });
 
         JButton okButton = new JButton("OK");
-        okButton.setBounds(500,10,50,50);
+        okButton.setBounds(500,5,50,30);
 
         okButton.addActionListener(e -> {
             iloscSlimakowSlider.disable();
@@ -160,8 +156,8 @@ class Slimaki extends JFrame implements ActionListener
                 czyJestSlimak[i][j] = false;
             }
         }
-        salata = new Rysunek();
-        salata.setBounds(10, 50, 761, 401);
+        salata = new RysowaniePlanszy();
+        salata.setBounds(10, 50, 751, 391);
         panel.add(salata);
 
         narysujDolneSlidery();
@@ -179,7 +175,7 @@ class Slimaki extends JFrame implements ActionListener
         odrastanieTrawyLabel.setBounds(10, 460, 140, 20);
         szybkoscOdrastaniaSlider.setBounds(10,485,140,20);
 
-        szybkoscSlimakowLabel.setBounds(200, 460, 140, 20);
+        szybkoscSlimakowLabel.setBounds(200, 460, 140, 30);
 
         zarlocznoscSlimakowLabel.setBounds(400, 460, 140, 20);
 
@@ -196,7 +192,7 @@ class Slimaki extends JFrame implements ActionListener
         szybkoscOdrastaniaSlider.addChangeListener(new LiscSzybkoscChange());
 
         JTextField szybkoscOdrastaniaField = new JTextField();
-        szybkoscOdrastaniaField.setBounds(10,520,140,20);
+        szybkoscOdrastaniaField.setBounds(10,520,140,30);
 
         szybkoscOdrastaniaSlider.addChangeListener(e -> {
             szybkoscOdrastaniaField.setText(Integer.toString(szybkoscOdrastaniaSlider.getValue()));
@@ -209,7 +205,7 @@ class Slimaki extends JFrame implements ActionListener
         szybkoscSlimakowSlider.addChangeListener(new SlimakSzybkoscChange(iloscSlimakow));
 
         JTextField szybkoscSlimakowField = new JTextField();
-        szybkoscSlimakowField.setBounds(200,520,140,20);
+        szybkoscSlimakowField.setBounds(200,520,140,30);
 
         szybkoscSlimakowSlider.addChangeListener(e -> {
             szybkoscSlimakowField.setText(Integer.toString(szybkoscSlimakowSlider.getValue()));
@@ -225,7 +221,7 @@ class Slimaki extends JFrame implements ActionListener
         zarlocznoscWszystkichSlider.addChangeListener(new SlimakZarlocznoscChange((iloscSlimakow)));
 
         JTextField zarlocznoscWszystkichField = new JTextField();
-        zarlocznoscWszystkichField.setBounds(400,520,140,20);
+        zarlocznoscWszystkichField.setBounds(400,520,140,30);
 
         zarlocznoscWszystkichSlider.addChangeListener(e -> {
             zarlocznoscWszystkichField.setText(Integer.toString(zarlocznoscWszystkichSlider.getValue()));
@@ -264,7 +260,7 @@ class Slimaki extends JFrame implements ActionListener
                 }
             }
 
-            //utworzenie obiektow klasy Lisc oraz Rysunek
+            //utworzenie obiektow klasy Lisc oraz RysowaniePlanszy
 
 
 
